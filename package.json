@@ -28,7 +28,9 @@
   "homepage": "https://github.com/mmalaquias1/super-task-manager-api#readme",
   "dependencies": {
     "consign": "^0.1.4",
-    "express": "^4.15.3"
+    "express": "^4.15.3",
+    "sequelize": "^3.30.4",
+    "sqlite3": "^3.1.8"
   },
   "devDependencies": {
     "eslint": "^3.19.0",

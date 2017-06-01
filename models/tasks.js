@@ -5,7 +5,7 @@ module.exports = app => {
 		findAll: (params, callback) => {
 			return callback([
 				{title: 'Buy something'},
-				{title:	'Consertar	o	pc'},
+				{title:	'Watch a movie'},
 			]);
 		}
 	};
