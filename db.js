@@ -1,20 +1,37 @@
 'use strict';
 
 const Sequelize = require('sequelize');
+const fs = require('fs');
+const path = require('path');
 
-const config = require('./libs/config');
+let db = null;
 
-let sequelize = null;
-
-module.exports = () => {
-	if (!sequelize) {
-		sequelize = new Sequelize(
-			config.database,
-			config.username,
-			config.password,
-			config.params
+module.exports = app => {
+	if (!db) {
+		const sequelize = new Sequelize(
+			app.libs.config.database,
+			app.libs.config.username,
+			app.libs.config.password,
+			app.libs.config.params
 		);
+
+		db = {
+			sequelize,
+			Sequelize,
+			models: {}
+		};
+
+		const dir = path.join(__dirname, 'models');
+		fs.readdirSync(dir).forEach(file => {
+			const modelDir = path.join(dir, file);
+			const model = sequelize.import(modelDir);
+			db.models[model.name] = model;
+		});
+
+		Object.keys(db.models).forEach(key => {
+			db.models[key].associate(db.models);
+		});
 	}
 
-	return sequelize;
+	return db;
 };
