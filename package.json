@@ -27,6 +27,7 @@
   },
   "homepage": "https://github.com/mmalaquias1/super-task-manager-api#readme",
   "dependencies": {
+    "body-parser": "^1.17.2",
     "consign": "^0.1.4",
     "express": "^4.15.3",
     "sequelize": "^3.30.4",
