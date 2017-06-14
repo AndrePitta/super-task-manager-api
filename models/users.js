@@ -1,5 +1,7 @@
 'use strict';
 
+const bcrypt = require('bcrypt');
+
 module.exports = (sequelize, DataType) => {
 	const Users = sequelize.define('Users', {
 		id: {
@@ -31,9 +33,17 @@ module.exports = (sequelize, DataType) => {
 		}
 	},
 		{
+			hooks: {
+				beforeCreate: user => {
+					user.password = bcrypt.hashSync(user.password, bcrypt.genSaltSync());
+				}
+			},
 			classMethods: {
 				associate: models => {
 					Users.hasMany(models.Tasks);
+				},
+				isPassword: (encodedPassword, password) => {
+					return bcrypt.compareSync(password, encodedPassword);
 				}
 			}
 		});

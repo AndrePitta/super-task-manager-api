@@ -10,5 +10,7 @@ module.exports = {
 		define: {
 			underscore: true
 		}
-	}
+	},
+	jwtSecret: '$uP3r-AP1',
+	jwtSession: {session: false}
 };
