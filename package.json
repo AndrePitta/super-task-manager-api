@@ -4,8 +4,15 @@
   "description": "A simple task manager building with Node",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
+    "start": "npm run apidoc && node index.js",
+    "apidoc": "apidoc -i routes/ -o public/apidoc",
     "test": "NODE_ENV=test mocha test/**/*.js"
+  },
+  "apidoc": {
+    "name": "Document of Super tasks manager API",
+    "template": {
+      "forceLanguage": "pt_br"
+    }
   },
   "repository": {
     "type": "git",
@@ -37,6 +44,7 @@
     "sqlite3": "^3.1.8"
   },
   "devDependencies": {
+    "apidoc": "^0.17.6",
     "chai": "^4.0.2",
     "eslint": "^3.19.0",
     "eslint-config-airbnb-base": "^11.2.0",
